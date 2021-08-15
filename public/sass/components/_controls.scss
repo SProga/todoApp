@@ -1,0 +1,24 @@
+.controls {
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	border-radius: 10px;
+	padding: 2.5rem;
+	border: 1px solid #ccc;
+	background-color: $light-gray;
+	margin: 2rem auto;
+
+	&__btn {
+		border: none;
+		background: transparent;
+		font-family: inherit;
+		margin: 0 1rem;
+		font-size: 1.8rem;
+		font-weight: 600;
+		color: $dark-grayish-blue;
+	}
+	&__btn.active {
+		color: $bright-blue;
+	}
+}

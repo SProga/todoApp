@@ -24,7 +24,13 @@
 	</head>
 	<body>
 		<header class="header">
-			<h1 class="title my-l ml-m">Todo</h1>
+			<div class="header__group">
+				<h1 class="title my-l ml-m">Todo</h1>
+				<span class="btn__theme">
+					<img src="./public/images/icon-moon.svg" alt="toggle dark mode" />
+				</span>
+			</div>
+
 			<div class="todo">
 				<button class="todo__btn" type="button"></button>
 				<label class="todo__label sr-only">create a new Todo</label>
@@ -46,14 +52,24 @@
 			</div>
 		</main>
 		<!-- Add dynamic number -->
-		items left All Active Completed Clear Completed Drag and drop to reorder
-		list
+		<div class="controls">
+			<button class="controls__btn active" type="button" data-filter="all">
+				All
+			</button>
+			<button class="controls__btn" type="button" data-filter="active">
+				Active
+			</button>
+			<button class="controls__btn" type="button" data-filter="completed">
+				Completed
+			</button>
+		</div>
+		<p class="instruction">Drag and drop to reorder list</p>
 
 		<div class="attribution">
 			Challenge by
 			<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
 				>Frontend Mentor</a
-			>. Coded by <a href="#">Your Name Here</a>.
+			>. Coded by <a href="www.github.com/SProga">SProga</a>.
 		</div>
 
 		<script src="./public/js/script.js" type="module"></script>

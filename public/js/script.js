@@ -3,6 +3,7 @@ const input = document.querySelector(".todo__input");
 const list = document.querySelector(".todo__list");
 const itemsLeft = document.querySelector(".items__left");
 const clearBtn = document.querySelector(".clear");
+
 let listArr = [];
 itemsLeft.innerHTML = `0 items left`;
 
@@ -56,16 +57,24 @@ function removeTodoItem(id) {
 
 function toggleItemStatus(item) {
 	item.nextElementSibling.classList.toggle("strike-through");
-	item.style.backgroundImage = "url(./public/images/icon-check.svg)";
+	item.classList.toggle("show-completed");
+	console.log("toggleItemStatus", listArr);
 }
 
-function displayList() {
+function displayList(arr = listArr) {
 	list.innerHTML = "";
-	if (listArr.length > 0) {
-		listArr.forEach((item) => {
+	console.log("displayList()", arr);
+	if (arr.length > 0) {
+		arr.forEach((item) => {
 			const todoItem = document.createElement("LI");
 			todoItem.classList.add("todo__listItem");
-			todoItem.innerHTML = `<span class="toggle" data-id='${item.id}'></span><span class="text">${item.text}</span><span class="remove-item" data-id='${item.id}'></span>`;
+			todoItem.innerHTML = `<span class="toggle ${
+				item.completed ? "show-completed" : ""
+			}" data-id='${item.id}'></span><span class="text ${
+				item.completed ? "strike-through" : ""
+			}">${item.text}</span><span class="remove-item" data-id='${
+				item.id
+			}'></span>`;
 			list.append(todoItem);
 		});
 	}
@@ -73,5 +82,28 @@ function displayList() {
 		itemsLeft.innerHTML = `${listArr.length} item left`;
 	} else {
 		itemsLeft.innerHTML = `${listArr.length} items left`;
+	}
+}
+
+const listItemsFilter = document.querySelectorAll(".controls__btn");
+listItemsFilter.forEach((item) => {
+	item.addEventListener("click", filterList.bind(null, item));
+});
+
+function filterList(item) {
+	const { filter } = item.dataset;
+	let filterArr;
+	listItemsFilter.forEach((item) => item.classList.remove("active"));
+	item.classList.add("active");
+
+	if (filter === "active") {
+		filterArr = listArr.filter((item) => item.completed === false);
+		return displayList(filterArr);
+	}
+	if (filter === "completed") {
+		filterArr = listArr.filter((item) => item.completed === true);
+		return displayList(filterArr);
+	} else {
+		return displayList();
 	}
 }

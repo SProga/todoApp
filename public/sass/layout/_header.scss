@@ -6,4 +6,10 @@
 	background: no-repeat url("../images/bg-mobile-light.jpg");
 	background-position: center 0%;
 	background-size: cover;
+
+	&__group {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 }

@@ -40,12 +40,22 @@ body {
   background: no-repeat url("../images/bg-mobile-light.jpg");
   background-position: center 0%;
   background-size: cover; }
+  .header__group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
 
 .title {
   text-transform: uppercase;
   color: #e4e5f1;
   letter-spacing: 1.5rem;
   font-size: 4rem; }
+
+.instruction {
+  font-size: 1.8rem;
+  text-align: center;
+  padding: 3rem;
+  color: #9394a5; }
 
 .ml-s {
   margin-left: 2rem; }
@@ -122,9 +132,12 @@ body {
       outline: none; }
   .todo__btn {
     position: absolute;
+    top: 25%;
+    left: 10%;
     height: 3rem;
     width: 3rem;
-    border: 1px solid #161414;
+    border: 1px solid #ccc;
+    background: transparent;
     border-radius: 50%;
     z-index: 9999; }
   .todo__container {
@@ -148,7 +161,8 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 2rem; }
+    padding: 2rem;
+    font-size: 1.8rem; }
     .todo__listItem:not(:first-of-type) {
       border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc; }
@@ -169,9 +183,13 @@ body {
   border-radius: 50%;
   z-index: 9999;
   margin-right: 2rem;
-  background-image: linear-gradient(to right, #57ddff, #c058f3), url("../images/icon-check.svg");
+  border: 1px solid #ccc; }
+
+.show-completed {
+  background-image: linear-gradient(to right, rgba(87, 221, 255, 0.671), rgba(191, 88, 243, 0.637)), url("../images/icon-check.svg");
   background-position: center;
-  background-size: cover; }
+  background-size: center;
+  background-repeat: no-repeat; }
 
 .items__left {
   font-size: 2rem;
@@ -193,3 +211,29 @@ body {
   margin-bottom: 0.2rem;
   background-image: url("../images/icon-cross.svg");
   background-size: contain; }
+
+.btn__theme {
+  align-self: center;
+  margin-right: 5rem;
+  margin-bottom: 1rem; }
+
+.controls {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 2.5rem;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  margin: 2rem auto; }
+  .controls__btn {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #9394a5; }
+  .controls__btn.active {
+    color: #3a7bfd; }

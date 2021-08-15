@@ -19,9 +19,12 @@
 	}
 	&__btn {
 		position: absolute;
+		top: 25%;
+		left: 10%;
 		height: 3rem;
 		width: 3rem;
-		border: 1px solid rgb(22, 20, 20);
+		border: 1px solid #ccc;
+		background: transparent;
 		border-radius: 50%;
 		z-index: 9999;
 	}
@@ -51,6 +54,7 @@
 		align-items: center;
 		position: relative;
 		padding: 2rem;
+		font-size: 1.8rem;
 		&:not(:first-of-type) {
 			border-top: 1px solid #ccc;
 			border-bottom: 1px solid #ccc;
@@ -77,14 +81,18 @@
 	border-radius: 50%;
 	z-index: 9999;
 	margin-right: 2rem;
+	border: 1px solid #ccc;
+}
+.show-completed {
 	background-image: linear-gradient(
 			to right,
-			rgb(87, 221, 255),
-			rgb(192, 88, 243)
+			rgba(87, 221, 255, 0.671),
+			rgba(191, 88, 243, 0.637)
 		),
 		url("../images/icon-check.svg");
 	background-position: center;
-	background-size: cover;
+	background-size: center;
+	background-repeat: no-repeat;
 }
 
 .items__left {
@@ -108,4 +116,10 @@
 	margin-bottom: 0.2rem;
 	background-image: url("../images/icon-cross.svg");
 	background-size: contain;
+}
+
+.btn__theme {
+	align-self: center;
+	margin-right: 5rem;
+	margin-bottom: 1rem;
 }
