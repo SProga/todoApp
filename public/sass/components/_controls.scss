@@ -8,6 +8,11 @@
 	border: 1px solid #ccc;
 	background-color: $light-gray;
 	margin: 2rem auto;
+	color: inherit;
+	&.dark-theme {
+		background-color: hsl(235, 24%, 19%);
+		border: 1px solid hsl(235, 24%, 19%);
+	}
 
 	&__btn {
 		border: none;
@@ -16,7 +21,7 @@
 		margin: 0 1rem;
 		font-size: 1.8rem;
 		font-weight: 600;
-		color: $dark-grayish-blue;
+		color: inherit;
 	}
 	&__btn.active {
 		color: $bright-blue;

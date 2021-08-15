@@ -27,7 +27,11 @@
 			<div class="header__group">
 				<h1 class="title my-l ml-m">Todo</h1>
 				<span class="btn__theme">
-					<img src="./public/images/icon-moon.svg" alt="toggle dark mode" />
+					<img
+						class="theme__img"
+						src="./public/images/icon-moon.svg"
+						alt="toggle dark mode"
+					/>
 				</span>
 			</div>
 
@@ -50,20 +54,21 @@
 					<button type="button" class="clear">clear completed</button>
 				</div>
 			</div>
+
+			<!-- Add dynamic number -->
+			<div class="controls">
+				<button class="controls__btn active" type="button" data-filter="all">
+					All
+				</button>
+				<button class="controls__btn" type="button" data-filter="active">
+					Active
+				</button>
+				<button class="controls__btn" type="button" data-filter="completed">
+					Completed
+				</button>
+			</div>
+			<p class="instruction">Drag and drop to reorder list</p>
 		</main>
-		<!-- Add dynamic number -->
-		<div class="controls">
-			<button class="controls__btn active" type="button" data-filter="all">
-				All
-			</button>
-			<button class="controls__btn" type="button" data-filter="active">
-				Active
-			</button>
-			<button class="controls__btn" type="button" data-filter="completed">
-				Completed
-			</button>
-		</div>
-		<p class="instruction">Drag and drop to reorder list</p>
 
 		<div class="attribution">
 			Challenge by

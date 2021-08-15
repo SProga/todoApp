@@ -23,7 +23,12 @@ body {
   min-height: 100vh;
   box-sizing: border-box;
   font-family: "Josefin Sans", sans-serif;
-  background-color: #e4e5f1; }
+  background-color: #e4e5f1;
+  color: #9394a5 !important; }
+
+body.dark-theme {
+  background-color: #161722;
+  color: #e4e5f1; }
 
 .attribution {
   font-size: 11px;
@@ -32,14 +37,22 @@ body {
 .attribution a {
   color: #3e52a3; }
 
+main {
+  color: inherit; }
+
 .header {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 40vh;
+  width: 100%;
+  height: 38vh;
   background: no-repeat url("../images/bg-mobile-light.jpg");
-  background-position: center 0%;
+  background-position: center;
   background-size: cover; }
+  .header.dark-theme {
+    background: no-repeat url("../images/bg-mobile-dark.jpg");
+    background-position: center;
+    background-size: cover; }
   .header__group {
     display: flex;
     align-items: center;
@@ -74,8 +87,8 @@ body {
   margin-bottom: 4rem; }
 
 .my-l {
-  margin-top: 6rem;
-  margin-bottom: 6rem; }
+  margin-top: 4rem;
+  margin-bottom: 4rem; }
 
 .sr-only {
   border: 0 !important;
@@ -121,12 +134,16 @@ body {
     position: relative;
     padding: 2.4rem;
     width: 90%;
+    color: inherit;
     border-radius: 10px;
     border: none;
     margin: 0 auto;
     font-family: inherit;
     padding-left: 7rem;
     z-index: 2; }
+    .todo__input.dark-theme {
+      background-color: #25273c;
+      border: 1px solid #25273c; }
     .todo__input:focus {
       border: none;
       outline: none; }
@@ -136,7 +153,7 @@ body {
     left: 10%;
     height: 3rem;
     width: 3rem;
-    border: 1px solid #ccc;
+    border: 1px solid #4d5066;
     background: transparent;
     border-radius: 50%;
     z-index: 9999; }
@@ -146,10 +163,13 @@ body {
     background-color: #fafafa;
     min-height: 30rem;
     margin: 0 auto;
-    margin-top: -14rem;
+    margin-top: -15rem;
     width: 90%;
     border-radius: 10px;
-    border: 1px solid #ccc; }
+    border: 1px solid #4d5066; }
+    .todo__container.dark-theme {
+      background-color: #25273c;
+      border: 1px solid #25273c; }
   .todo__list {
     display: flex;
     flex-direction: column;
@@ -162,10 +182,11 @@ body {
     align-items: center;
     position: relative;
     padding: 2rem;
-    font-size: 1.8rem; }
+    font-size: 1.8rem;
+    color: inherit; }
     .todo__listItem:not(:first-of-type) {
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc; }
+      border-top: 1px solid #4d5066;
+      border-bottom: 1px solid #4d5066; }
   .todo__notifications {
     display: flex;
     justify-content: space-between;
@@ -174,7 +195,7 @@ body {
     padding: 2.5rem; }
 
 .strike-through {
-  color: #9394a5;
+  color: inherit;
   text-decoration: line-through; }
 
 .toggle {
@@ -183,7 +204,7 @@ body {
   border-radius: 50%;
   z-index: 9999;
   margin-right: 2rem;
-  border: 1px solid #ccc; }
+  border: 1px solid #4d5066; }
 
 .show-completed {
   background-image: linear-gradient(to right, rgba(87, 221, 255, 0.671), rgba(191, 88, 243, 0.637)), url("../images/icon-check.svg");
@@ -193,13 +214,13 @@ body {
 
 .items__left {
   font-size: 2rem;
-  color: #9394a5; }
+  color: inherit; }
 
 .clear {
   border: none;
   background: transparent;
   font-size: 2rem;
-  color: #9394a5;
+  color: inherit;
   font-family: inherit;
   text-transform: capitalize; }
 
@@ -226,7 +247,11 @@ body {
   padding: 2.5rem;
   border: 1px solid #ccc;
   background-color: #fafafa;
-  margin: 2rem auto; }
+  margin: 2rem auto;
+  color: inherit; }
+  .controls.dark-theme {
+    background-color: #25273c;
+    border: 1px solid #25273c; }
   .controls__btn {
     border: none;
     background: transparent;
@@ -234,6 +259,6 @@ body {
     margin: 0 1rem;
     font-size: 1.8rem;
     font-weight: 600;
-    color: #9394a5; }
+    color: inherit; }
   .controls__btn.active {
     color: #3a7bfd; }

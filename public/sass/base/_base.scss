@@ -31,6 +31,12 @@ body {
 	box-sizing: border-box;
 	font-family: "Josefin Sans", sans-serif;
 	background-color: $light-grayish-blue;
+	color: $dark-grayish-blue !important;
+}
+
+body.dark-theme {
+	background-color: hsl(235, 21%, 11%);
+	color: hsl(236, 33%, 92%);
 }
 
 .attribution {
@@ -39,4 +45,8 @@ body {
 }
 .attribution a {
 	color: hsl(228, 45%, 44%);
+}
+
+main {
+	color: inherit;
 }

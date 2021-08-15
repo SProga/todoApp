@@ -107,3 +107,17 @@ function filterList(item) {
 		return displayList();
 	}
 }
+
+const changeTheme = document.querySelector(".btn__theme");
+changeTheme.addEventListener("click", () => {
+	document.body.classList.toggle("dark-theme");
+	document.querySelector(".header").classList.toggle("dark-theme");
+	document.querySelector(".todo__input").classList.toggle("dark-theme");
+	document.querySelector(".todo__container").classList.toggle("dark-theme");
+	document.querySelector(".controls").classList.toggle("dark-theme");
+	if (document.body.classList.contains("dark-theme")) {
+		document.querySelector(".theme__img").src = "./public/images/icon-sun.svg";
+	} else {
+		document.querySelector(".theme__img").src = "./public/images/icon-moon.svg";
+	}
+});
