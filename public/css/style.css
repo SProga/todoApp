@@ -1,0 +1,195 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #e4e5f1; }
+
+.attribution {
+  font-size: 11px;
+  text-align: center; }
+
+.attribution a {
+  color: #3e52a3; }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 40vh;
+  background: no-repeat url("../images/bg-mobile-light.jpg");
+  background-position: center 0%;
+  background-size: cover; }
+
+.title {
+  text-transform: uppercase;
+  color: #e4e5f1;
+  letter-spacing: 1.5rem;
+  font-size: 4rem; }
+
+.ml-s {
+  margin-left: 2rem; }
+
+.ml-m {
+  margin-left: 4rem; }
+
+.mb-s {
+  margin-bottom: 2rem; }
+
+.mt-m {
+  margin-top: 4rem; }
+
+.my-m {
+  margin-top: 4rem;
+  margin-bottom: 4rem; }
+
+.my-l {
+  margin-top: 6rem;
+  margin-bottom: 6rem; }
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+  /* 3 */ }
+
+/*
+	Use in conjunction with .sr-only to only display content when it's focused.
+	@note Useful for skip links 
+	@see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+	@note Based on a HTML5 Boilerplate technique, included in Bootstrap
+	@note Fixed a bug with position: static on iOS 10.0.2 + VoiceOver
+		@author Sylvain Pigeard
+		@see https://github.com/twbs/bootstrap/issues/20732
+*/
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  clip: auto !important;
+  -webkit-clip-path: none !important;
+  clip-path: none !important;
+  height: auto !important;
+  margin: auto !important;
+  overflow: visible !important;
+  width: auto !important;
+  white-space: normal !important; }
+
+.todo {
+  position: relative;
+  width: 100%;
+  text-align: center; }
+  .todo__input {
+    position: relative;
+    padding: 2.4rem;
+    width: 90%;
+    border-radius: 10px;
+    border: none;
+    margin: 0 auto;
+    font-family: inherit;
+    padding-left: 7rem;
+    z-index: 2; }
+    .todo__input:focus {
+      border: none;
+      outline: none; }
+  .todo__btn {
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid #161414;
+    border-radius: 50%;
+    z-index: 9999; }
+  .todo__container {
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+    min-height: 30rem;
+    margin: 0 auto;
+    margin-top: -14rem;
+    width: 90%;
+    border-radius: 10px;
+    border: 1px solid #ccc; }
+  .todo__list {
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    width: 100%;
+    list-style-type: none;
+    padding: 0 0 2rem; }
+  .todo__listItem {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 2rem; }
+    .todo__listItem:not(:first-of-type) {
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc; }
+  .todo__notifications {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding: 2.5rem; }
+
+.strike-through {
+  color: #9394a5;
+  text-decoration: line-through; }
+
+.toggle {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  z-index: 9999;
+  margin-right: 2rem;
+  background-image: linear-gradient(to right, #57ddff, #c058f3), url("../images/icon-check.svg");
+  background-position: center;
+  background-size: cover; }
+
+.items__left {
+  font-size: 2rem;
+  color: #9394a5; }
+
+.clear {
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  color: #9394a5;
+  font-family: inherit;
+  text-transform: capitalize; }
+
+.remove-item {
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  margin-left: auto;
+  margin-bottom: 0.2rem;
+  background-image: url("../images/icon-cross.svg");
+  background-size: contain; }
