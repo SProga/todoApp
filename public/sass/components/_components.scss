@@ -2,6 +2,9 @@
 	position: relative;
 	width: 100%;
 	text-align: center;
+	margin: 0 auto;
+	max-width: 50rem;
+	margin: 0 auto;
 	&__input {
 		position: relative;
 		padding: 2.4rem;
@@ -11,6 +14,7 @@
 		border: none;
 		margin: 0 auto;
 		font-family: inherit;
+		font-size: 2rem;
 		padding-left: 7rem;
 		z-index: 2;
 		color: var(--dark-grayish-blue);
@@ -43,6 +47,18 @@
 		margin-top: -15rem;
 		width: 90%;
 		border-radius: 10px;
+
+		@include respond(tab-land) {
+			margin-top: -10rem;
+		}
+
+		@include respond(tab-port) {
+			margin-top: -14rem;
+		}
+
+		@include respond(big-desktop) {
+			margin-top: -8rem;
+		}
 	}
 	// ul Item
 	&__list {
@@ -110,6 +126,7 @@
 	color: inherit;
 	font-family: inherit;
 	text-transform: capitalize;
+	cursor: pointer;
 }
 .remove-item {
 	display: inline-block;
@@ -125,4 +142,8 @@
 	align-self: center;
 	margin-right: 5rem;
 	margin-bottom: 1rem;
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	outline: none;
 }

@@ -98,12 +98,12 @@ function displayList(arr = listArr) {
 			}'></span>`;
 			console.log(arr);
 			if (!item.enterAnimation) {
-				todoItem.classList.add("slideRight");
+				todoItem.classList.add("fadeIn");
 				item.enterAnimation = true;
 			}
 			list.append(todoItem);
 			setTimeout(() => {
-				todoItem.classList.remove("slideRight");
+				todoItem.classList.remove("fadeIn");
 			}, 3000);
 		});
 	}
@@ -139,7 +139,16 @@ function filterList(item) {
 
 const changeTheme = document.querySelector(".btn__theme");
 changeTheme.addEventListener("click", () => {
+	let timer;
+	clearTimeout(timer);
 	document.body.classList.toggle("dark-theme");
+	document.body.classList.add("fadeIn");
+	changeTheme.disabled = true;
+	timer = setTimeout(() => {
+		document.body.classList.remove("fadeIn");
+		changeTheme.disabled = false;
+	}, 600);
+
 	document.querySelector(".header").classList.toggle("dark-background");
 	if (document.body.classList.contains("dark-theme")) {
 		document.querySelector(".theme__img").src = "./public/images/icon-sun.svg";

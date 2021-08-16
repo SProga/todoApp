@@ -257,23 +257,16 @@ fadeIn
 .fadeIn {
   animation-name: fadeIn;
   -webkit-animation-name: fadeIn;
-  animation-duration: 1.5s;
-  -webkit-animation-duration: 1.5s;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
   animation-timing-function: ease-in-out;
   -webkit-animation-timing-function: ease-in-out;
   visibility: visible !important; }
 
 @keyframes fadeIn {
   0% {
-    transform: scale(0);
     opacity: 0; }
-  60% {
-    transform: scale(1.1); }
-  80% {
-    transform: scale(0.9);
-    opacity: 1; }
   100% {
-    transform: scale(1);
     opacity: 1; } }
 
 @-webkit-keyframes fadeIn {
@@ -784,13 +777,13 @@ stretchRight
 
 html {
   font-size: 62.5%; }
-  @media only screen and (max-width: 75em) {
+  @media only screen and (max-width: 80em) {
     html {
       font-size: 56.25%; } }
   @media only screen and (max-width: 56.25em) {
     html {
       font-size: 50%; } }
-  @media only screen and (min-width: 112.5em) {
+  @media only screen and (min-width: 80em) {
     html {
       font-size: 75%; } }
 
@@ -822,7 +815,9 @@ body.dark-theme {
   color: var(--bright-blue); }
 
 main {
-  color: inherit; }
+  color: inherit;
+  max-width: 50rem;
+  margin: 0 auto; }
 
 .header {
   display: flex;
@@ -834,10 +829,17 @@ main {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; }
+  @media only screen and (min-width: 80em) {
+    .header {
+      height: 44vh;
+      background-image: url("../images/bg-desktop-light.jpg"); } }
   .header__group {
     display: flex;
     align-items: center;
-    justify-content: space-between; }
+    justify-content: space-between;
+    max-width: 50rem;
+    margin: 0 auto;
+    width: 100%; }
 
 .dark-background {
   background-image: url("../images/bg-mobile-dark.jpg") !important; }
@@ -916,7 +918,10 @@ main {
 .todo {
   position: relative;
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  margin: 0 auto;
+  max-width: 50rem;
+  margin: 0 auto; }
   .todo__input {
     position: relative;
     padding: 2.4rem;
@@ -926,6 +931,7 @@ main {
     border: none;
     margin: 0 auto;
     font-family: inherit;
+    font-size: 2rem;
     padding-left: 7rem;
     z-index: 2;
     color: var(--dark-grayish-blue);
@@ -954,6 +960,15 @@ main {
     margin-top: -15rem;
     width: 90%;
     border-radius: 10px; }
+    @media only screen and (max-width: 80em) {
+      .todo__container {
+        margin-top: -10rem; } }
+    @media only screen and (max-width: 56.25em) {
+      .todo__container {
+        margin-top: -14rem; } }
+    @media only screen and (min-width: 80em) {
+      .todo__container {
+        margin-top: -8rem; } }
   .todo__list {
     display: flex;
     flex-direction: column;
@@ -1008,7 +1023,8 @@ main {
   font-size: 2rem;
   color: inherit;
   font-family: inherit;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  cursor: pointer; }
 
 .remove-item {
   display: inline-block;
@@ -1022,7 +1038,11 @@ main {
 .btn__theme {
   align-self: center;
   margin-right: 5rem;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none; }
 
 .controls {
   width: 90%;
@@ -1041,7 +1061,8 @@ main {
     margin: 0 1rem;
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--dark-grayish-blue); }
+    color: var(--dark-grayish-blue);
+    cursor: pointer; }
     .controls__btn:active {
       color: var(--btn-active) !important; }
   .controls__btn.active {
