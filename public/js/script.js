@@ -49,33 +49,6 @@ list.addEventListener("click", async function (e) {
 	}
 });
 
-let mobileStartDrag = "touchstart",
-	desktopStateDrag = "dragstart",
-	dragged = null;
-
-list.addEventListener("dragenter", function (e) {
-	console.log("draggging!", e.target);
-	dragged = e.target;
-	const todos = this.childNodes;
-	let listItems = [];
-	for (const item of todos) {
-		if (item.childNodes[0].dataset.id !== dragged.dataset.id) {
-			item.classList.add("drag-active");
-		}
-	}
-});
-
-list.addEventListener("dragleave", function (e) {
-	dragged = e.target;
-	const todos = this.childNodes;
-	let listItems = [];
-	for (const item of todos) {
-		if (item.childNodes[0].dataset.id !== dragged.dataset.id) {
-			item.classList.remove("drag-active");
-		}
-	}
-});
-
 clearBtn.addEventListener("click", function (e) {
 	listArr = listArr.filter((item) => item.completed === false);
 	itemsLeft.innerHTML = `${listArr.length} items left`;
@@ -105,6 +78,77 @@ function removeTodoItem(id) {
 	});
 }
 
+// DRAGGING
+//IUSE querySelectorAll on the list Items
+let dragItem;
+list.addEventListener("dragstart", function (e) {
+	dragItem = e.target;
+	const todos = this.childNodes;
+	for (const item of todos) {
+		if (item.childNodes[0].dataset.id !== dragItem.dataset.id) {
+			item.classList.add("dragging");
+		}
+	}
+});
+
+list.addEventListener("dragend", function (e) {
+	const todos = this.childNodes;
+	for (const item of todos) {
+		item.classList.remove("dragging");
+	}
+});
+
+list.addEventListener("dragenter", function (e) {
+	const todos = this.childNodes;
+	for (const item of todos) {
+		if (item.childNodes[0].dataset.id !== dragItem.dataset.id) {
+			item.classList.add("drag-active");
+		}
+	}
+});
+
+list.addEventListener("dragleave", function (e) {
+	const todos = this.childNodes;
+	for (const item of todos) {
+		if (item.childNodes[0].dataset.id !== dragItem.dataset.id) {
+			item.classList.remove("drag-active");
+		}
+	}
+});
+
+list.addEventListener("dragover", function (e) {
+	const todos = this.childNodes;
+	for (const item of todos) {
+		if (item.childNodes[0].dataset.id === dragItem.dataset.id) {
+			e.preventDefault();
+		}
+	}
+});
+
+function onDropItem(e) {
+	e.preventDefault();
+	let draggedpos,
+		droppedpos = 0;
+	let dropItem = e.currentTarget;
+	const todos = document.querySelectorAll(".todo__listItem");
+	todos.forEach((item, index) => {
+		console.log("itemid", item.dataset.id);
+		console.log("datasetid", dragItem.dataset.id);
+		if (item.dataset.id === dropItem.dataset.id) {
+			droppedpos = index; //drop position index
+		}
+		if (item.dataset.id === dragItem.dataset.id) {
+			draggedpos = index;
+		}
+	});
+
+	if (draggedpos < droppedpos) {
+		list.insertBefore(dropItem, dragItem);
+	} else {
+		list.insertBefore(dragItem, dropItem);
+	}
+}
+
 function toggleItemStatus(item) {
 	item.nextElementSibling.classList.toggle("strike-through");
 	item.classList.toggle("show-completed");
@@ -118,6 +162,7 @@ function displayList(arr = listArr) {
 		arr.forEach((item) => {
 			const todoItem = document.createElement("LI");
 			todoItem.classList.add("todo__listItem");
+			todoItem.addEventListener("drop", onDropItem);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
 			todoItem.innerHTML = `<span class="toggle ${
