@@ -961,18 +961,19 @@ main {
     background-color: var(--gray);
     min-height: 30rem;
     margin: 0 auto;
-    margin-top: -15rem;
     width: 90%;
-    border-radius: 10px; }
+    border-radius: 10px;
+    position: relative;
+    top: -8rem; }
     @media only screen and (max-width: 80em) {
       .todo__container {
-        margin-top: -10rem; } }
+        top: -8rem; } }
     @media only screen and (max-width: 56.25em) {
       .todo__container {
-        margin-top: -14rem; } }
+        top: -14rem; } }
     @media only screen and (min-width: 80em) {
       .todo__container {
-        margin-top: -8rem; } }
+        top: -3rem; } }
   .todo__list {
     display: flex;
     flex-direction: column;

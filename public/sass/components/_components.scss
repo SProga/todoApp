@@ -44,20 +44,20 @@
 		background-color: var(--gray);
 		min-height: 30rem;
 		margin: 0 auto;
-		margin-top: -15rem;
 		width: 90%;
 		border-radius: 10px;
-
+		position: relative;
+		top: -8rem;
 		@include respond(tab-land) {
-			margin-top: -10rem;
+			top: -8rem;
 		}
 
 		@include respond(tab-port) {
-			margin-top: -14rem;
+			top: -14rem;
 		}
 
 		@include respond(big-desktop) {
-			margin-top: -8rem;
+			top: -3rem;
 		}
 	}
 	// ul Item
