@@ -1,10 +1,7 @@
-# Avoid accidental upload of the Sketch and Figma design files
-#####################################################
-## Please do not remove lines 5 and 6 - thanks! 🙂 ##
-#####################################################
+node_modules
 *.sketch
 *.fig
-node_modules
+
 
 # Avoid accidental XD upload if you convert the design file
 ###############################################
