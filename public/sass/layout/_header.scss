@@ -24,7 +24,11 @@
 }
 
 .dark-background {
-	background-image: url("../images/bg-mobile-dark.jpg") !important;
+	background-image: url("../images/bg-mobile-dark.jpg");
+	@include respond(big-desktop) {
+		height: 44vh;
+		background-image: url("../images/bg-desktop-dark.jpg");
+	}
 }
 
 .theme__img {
