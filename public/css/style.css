@@ -815,6 +815,7 @@ body.dark-theme {
   color: var(--bright-blue); }
 
 main {
+  position: relative;
   color: inherit;
   max-width: 50rem;
   margin: 0 auto; }
@@ -955,6 +956,7 @@ main {
     .todo__btn:focus {
       outline: none; }
   .todo__container {
+    position: absolute;
     display: flex;
     color: inherit;
     flex-direction: column;
@@ -962,18 +964,7 @@ main {
     min-height: 30rem;
     margin: 0 auto;
     width: 90%;
-    border-radius: 10px;
-    position: relative;
-    top: -8rem; }
-    @media only screen and (max-width: 80em) {
-      .todo__container {
-        top: -8rem; } }
-    @media only screen and (max-width: 56.25em) {
-      .todo__container {
-        top: -14rem; } }
-    @media only screen and (min-width: 80em) {
-      .todo__container {
-        top: -3rem; } }
+    border-radius: 10px; }
   .todo__list {
     display: flex;
     flex-direction: column;

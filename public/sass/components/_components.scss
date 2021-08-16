@@ -38,6 +38,7 @@
 		}
 	}
 	&__container {
+		position: absolute;
 		display: flex;
 		color: inherit;
 		flex-direction: column;
@@ -46,19 +47,6 @@
 		margin: 0 auto;
 		width: 90%;
 		border-radius: 10px;
-		position: relative;
-		top: -8rem;
-		@include respond(tab-land) {
-			top: -8rem;
-		}
-
-		@include respond(tab-port) {
-			top: -14rem;
-		}
-
-		@include respond(big-desktop) {
-			top: -3rem;
-		}
 	}
 	// ul Item
 	&__list {
