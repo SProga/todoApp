@@ -149,7 +149,6 @@ changeTheme.addEventListener("click", () => {
 		changeTheme.disabled = false;
 	}, 600);
 
-	document.querySelector(".header").classList.toggle("dark-background");
 	if (document.body.classList.contains("dark-theme")) {
 		document.querySelector(".theme__img").src = "./public/images/icon-sun.svg";
 	} else {

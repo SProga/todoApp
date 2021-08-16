@@ -4,7 +4,7 @@
 	text-align: center;
 	margin: 0 auto;
 	max-width: 50rem;
-	margin: 0 auto;
+
 	&__input {
 		position: relative;
 		padding: 2.4rem;
@@ -38,7 +38,6 @@
 		}
 	}
 	&__container {
-		position: absolute;
 		display: flex;
 		color: inherit;
 		flex-direction: column;
@@ -46,6 +45,7 @@
 		min-height: 30rem;
 		margin: 0 auto;
 		width: 90%;
+		margin-top: 2rem;
 		border-radius: 10px;
 	}
 	// ul Item

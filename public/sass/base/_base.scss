@@ -41,7 +41,21 @@ body {
 	min-height: 100vh;
 	box-sizing: border-box;
 	font-family: "Josefin Sans", sans-serif;
+	background-position: top;
+	background-size: 100% 30%;
+	background-repeat: no-repeat;
 	background-color: var(--background-color);
+
+	@include respond(tab-land) {
+		background-image: url("../images/bg-desktop-light.jpg");
+	}
+	@include respond(phone) {
+		background-image: url("../images/bg-mobile-light.jpg");
+	}
+	@include respond(big-desktop) {
+		background-image: url("../images/bg-desktop-light.jpg");
+		background-size: 100% 44%;
+	}
 }
 
 body.dark-theme {
@@ -54,6 +68,16 @@ body.dark-theme {
 	--background-color: hsl(235, 21%, 11%);
 	--dark-toggle: hsl(233, 14%, 35%);
 	--dark-background-color: hsl(235, 24%, 19%);
+	@include respond(tab-land) {
+		background-image: url("../images/bg-desktop-dark.jpg");
+	}
+	@include respond(phone) {
+		background-image: url("../images/bg-mobile-dark.jpg");
+	}
+	@include respond(big-desktop) {
+		background-image: url("../images/bg-desktop-dark.jpg");
+		background-size: 100% 44%;
+	}
 }
 
 .attribution {
