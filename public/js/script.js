@@ -7,7 +7,13 @@ const clearBtn = document.querySelector(".clear");
 let listArr = [];
 itemsLeft.innerHTML = `0 items left`;
 
-inputBtn.addEventListener("click", (e) => {
+inputBtn.addEventListener("click", addTodo);
+input.addEventListener("keydown", function (e) {
+	if (e.which === 13) {
+		addTodo(e);
+	}
+});
+function addTodo(e) {
 	const text = input.value;
 	if (text.trim().length === 0) {
 		return;
@@ -22,9 +28,9 @@ inputBtn.addEventListener("click", (e) => {
 	});
 	input.value = "";
 	displayList();
-});
+}
 
-list.addEventListener("click", function (e) {
+list.addEventListener("click", async function (e) {
 	let toggleComplete = ".toggle";
 	let removeTodo = ".remove-item";
 	if (e.target.matches(toggleComplete)) {
@@ -37,7 +43,7 @@ list.addEventListener("click", function (e) {
 	}
 	if (e.target.matches(removeTodo)) {
 		const { id } = e.target.dataset;
-		removeTodoItem(id);
+		await removeTodoItem(id);
 	} else {
 		return;
 	}
@@ -47,17 +53,27 @@ let mobileStartDrag = "touchstart",
 	desktopStateDrag = "dragstart",
 	dragged = null;
 
-list.addEventListener(mobileStartDrag, function (e) {
+list.addEventListener("dragenter", function (e) {
 	console.log("draggging!", e.target);
 	dragged = e.target;
 	const todos = this.childNodes;
 	let listItems = [];
 	for (const item of todos) {
 		if (item.childNodes[0].dataset.id !== dragged.dataset.id) {
-			item.classList.add("dragging");
+			item.classList.add("drag-active");
 		}
 	}
-	// dragged.classList.add("dragging");
+});
+
+list.addEventListener("dragleave", function (e) {
+	dragged = e.target;
+	const todos = this.childNodes;
+	let listItems = [];
+	for (const item of todos) {
+		if (item.childNodes[0].dataset.id !== dragged.dataset.id) {
+			item.classList.remove("drag-active");
+		}
+	}
 });
 
 clearBtn.addEventListener("click", function (e) {
@@ -67,11 +83,26 @@ clearBtn.addEventListener("click", function (e) {
 });
 
 function removeTodoItem(id) {
-	const find = listArr.splice(
-		listArr.findIndex((item) => item.id === id),
-		1
-	);
-	displayList();
+	const allTodos = document.querySelectorAll(".todo__listItem");
+	const itemId = parseInt(id);
+
+	allTodos.forEach((todo) => {
+		const num = todo.dataset.id;
+		const toNum = +num;
+		if (toNum === itemId) {
+			todo.classList.add("fadeOut");
+		}
+	});
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			listArr.splice(
+				listArr.findIndex((item) => item.id === itemId),
+				1
+			);
+			displayList();
+		}, 500);
+		resolve();
+	});
 }
 
 function toggleItemStatus(item) {
@@ -96,7 +127,7 @@ function displayList(arr = listArr) {
 			}">${item.text}</span><span class="remove-item" data-id='${
 				item.id
 			}'></span>`;
-			console.log(arr);
+
 			if (!item.enterAnimation) {
 				todoItem.classList.add("fadeIn");
 				item.enterAnimation = true;
@@ -147,7 +178,7 @@ changeTheme.addEventListener("click", () => {
 	timer = setTimeout(() => {
 		document.body.classList.remove("fadeIn");
 		changeTheme.disabled = false;
-	}, 600);
+	}, 550);
 
 	if (document.body.classList.contains("dark-theme")) {
 		document.querySelector(".theme__img").src = "./public/images/icon-sun.svg";

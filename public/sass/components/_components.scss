@@ -9,7 +9,7 @@
 		position: relative;
 		padding: 2.4rem;
 		width: 90%;
-		color: inherit;
+		color: var(--dark-grayish-blue);
 		border-radius: 10px;
 		border: none;
 		margin: 0 auto;
@@ -17,10 +17,24 @@
 		font-size: 2rem;
 		padding-left: 7rem;
 		z-index: 2;
-		color: var(--dark-grayish-blue);
 		background-color: var(--gray);
 		&:focus {
 			outline: none;
+		}
+		&::-webkit-input-placeholder {
+			color: var(--dark-grayish-blue);
+		}
+		&::-moz-placeholder {
+			color: var(--dark-grayish-blue);
+		}
+		&:-ms-input-placeholder {
+			color: var(--dark-grayish-blue);
+		}
+		&::-ms-input-placeholder {
+			color: var(--dark-grayish-blue);
+		}
+		&::placeholder {
+			color: var(--dark-grayish-blue);
 		}
 	}
 	&__btn {
@@ -33,6 +47,7 @@
 		background: transparent;
 		border-radius: 50%;
 		z-index: 9999;
+		cursor: pointer;
 		&:focus {
 			outline: none;
 		}
@@ -47,6 +62,8 @@
 		width: 90%;
 		margin-top: 2rem;
 		border-radius: 10px;
+		-webkit-backface-visibility: hidden;
+		        backface-visibility: hidden;
 	}
 	// ul Item
 	&__list {
@@ -93,6 +110,7 @@
 	margin-right: 2rem;
 	border: 1px solid var(--border);
 	will-change: background-image;
+	cursor: pointer;
 }
 .show-completed {
 	background-image: url("../images/icon-check.svg"),
@@ -124,6 +142,7 @@
 	margin-bottom: 0.2rem;
 	background-image: url("../images/icon-cross.svg");
 	background-size: contain;
+	cursor: pointer;
 }
 
 .btn__theme {

@@ -766,7 +766,8 @@ stretchRight
   --bright-blue: hsl(220, 98%, 61%);
   --background-color: hsl(236, 33%, 92%);
   --dark-toggle: hsl(233, 14%, 35%);
-  --btn-active: hsl(276, 78%, 69%); }
+  --btn-active: hsl(276, 78%, 69%);
+  --not-drag-color: rgba(226, 227, 229, 0.65); }
 
 *,
 *::after,
@@ -796,7 +797,8 @@ body {
   background-position: top;
   background-size: 100% 30%;
   background-repeat: no-repeat;
-  background-color: var(--background-color); }
+  background-color: var(--background-color);
+  background-attachment: fixed; }
   @media only screen and (max-width: 80em) {
     body {
       background-image: url("../images/bg-desktop-light.jpg"); } }
@@ -817,7 +819,8 @@ body.dark-theme {
   --btn-active: hsl(276, 78%, 69%);
   --background-color: hsl(235, 21%, 11%);
   --dark-toggle: hsl(233, 14%, 35%);
-  --dark-background-color: hsl(235, 24%, 19%); }
+  --dark-background-color: hsl(235, 24%, 19%);
+  --not-drag-color: rgba(226, 227, 229, 0.65); }
   @media only screen and (max-width: 80em) {
     body.dark-theme {
       background-image: url("../images/bg-desktop-dark.jpg"); } }
@@ -861,15 +864,14 @@ main {
 
 .title {
   text-transform: uppercase;
-  color: #e4e5f1;
+  color: #fff;
   letter-spacing: 1.5rem;
   font-size: 4rem; }
 
 .instruction {
   font-size: 1.8rem;
   text-align: center;
-  padding: 3rem;
-  color: #9394a5; }
+  padding: 3rem; }
 
 .ml-s {
   margin-left: 2rem; }
@@ -937,7 +939,7 @@ main {
     position: relative;
     padding: 2.4rem;
     width: 90%;
-    color: inherit;
+    color: var(--dark-grayish-blue);
     border-radius: 10px;
     border: none;
     margin: 0 auto;
@@ -945,10 +947,19 @@ main {
     font-size: 2rem;
     padding-left: 7rem;
     z-index: 2;
-    color: var(--dark-grayish-blue);
     background-color: var(--gray); }
     .todo__input:focus {
       outline: none; }
+    .todo__input::-webkit-input-placeholder {
+      color: var(--dark-grayish-blue); }
+    .todo__input::-moz-placeholder {
+      color: var(--dark-grayish-blue); }
+    .todo__input:-ms-input-placeholder {
+      color: var(--dark-grayish-blue); }
+    .todo__input::-ms-input-placeholder {
+      color: var(--dark-grayish-blue); }
+    .todo__input::placeholder {
+      color: var(--dark-grayish-blue); }
   .todo__btn {
     position: absolute;
     top: 25%;
@@ -958,7 +969,8 @@ main {
     border: 1px solid var(--border);
     background: transparent;
     border-radius: 50%;
-    z-index: 9999; }
+    z-index: 9999;
+    cursor: pointer; }
     .todo__btn:focus {
       outline: none; }
   .todo__container {
@@ -970,7 +982,9 @@ main {
     margin: 0 auto;
     width: 90%;
     margin-top: 2rem;
-    border-radius: 10px; }
+    border-radius: 10px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; }
   .todo__list {
     display: flex;
     flex-direction: column;
@@ -1007,7 +1021,8 @@ main {
   z-index: 9999;
   margin-right: 2rem;
   border: 1px solid var(--border);
-  will-change: background-image; }
+  will-change: background-image;
+  cursor: pointer; }
 
 .show-completed {
   background-image: url("../images/icon-check.svg"), linear-gradient(to right, #57ddff, #bf58f3);
@@ -1035,7 +1050,8 @@ main {
   margin-left: auto;
   margin-bottom: 0.2rem;
   background-image: url("../images/icon-cross.svg");
-  background-size: contain; }
+  background-size: contain;
+  cursor: pointer; }
 
 .btn__theme {
   align-self: center;
@@ -1071,5 +1087,8 @@ main {
     color: var(--bright-blue); }
 
 .dragging {
-  background-color: var(--dark-toggle) !important;
+  background-color: var(--dark-toggle);
   opacity: 0.6; }
+
+.drag-active {
+  background-color: var(--not-drag-color); }

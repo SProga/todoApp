@@ -28,6 +28,9 @@
 }
 
 .dragging {
-	background-color: var(--dark-toggle) !important;
+	background-color: var(--dark-toggle);
 	opacity: 0.6;
+}
+.drag-active {
+	background-color: var(--not-drag-color);
 }
