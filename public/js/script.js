@@ -17,6 +17,8 @@ inputBtn.addEventListener("click", (e) => {
 		id,
 		text,
 		completed: false,
+		enterAnimation: false,
+		exitAnimation: false,
 	});
 	input.value = "";
 	displayList();
@@ -63,11 +65,12 @@ function toggleItemStatus(item) {
 
 function displayList(arr = listArr) {
 	list.innerHTML = "";
-	console.log("displayList()", arr);
+
 	if (arr.length > 0) {
 		arr.forEach((item) => {
 			const todoItem = document.createElement("LI");
 			todoItem.classList.add("todo__listItem");
+			todoItem.draggable = true;
 			todoItem.innerHTML = `<span class="toggle ${
 				item.completed ? "show-completed" : ""
 			}" data-id='${item.id}'></span><span class="text ${
@@ -75,7 +78,15 @@ function displayList(arr = listArr) {
 			}">${item.text}</span><span class="remove-item" data-id='${
 				item.id
 			}'></span>`;
+			console.log(arr);
+			if (!item.enterAnimation) {
+				todoItem.classList.add("slideRight");
+				item.enterAnimation = true;
+			}
 			list.append(todoItem);
+			setTimeout(() => {
+				todoItem.classList.remove("slideRight");
+			}, 3000);
 		});
 	}
 	if (listArr.length === 1) {

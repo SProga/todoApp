@@ -29,6 +29,9 @@
 		background: transparent;
 		border-radius: 50%;
 		z-index: 9999;
+		&:focus {
+			outline: none;
+		}
 	}
 	&__container {
 		display: flex;
@@ -78,8 +81,8 @@
 }
 
 .toggle {
-	height: 3rem;
-	width: 3rem;
+	height: 3.5rem;
+	width: 3.5rem;
 	border-radius: 50%;
 	color: inherit;
 	z-index: 9999;
@@ -87,12 +90,8 @@
 	border: 1px solid var(--border);
 }
 .show-completed {
-	background-image: linear-gradient(
-			to right,
-			rgba(87, 221, 255, 0.671),
-			rgba(191, 88, 243, 0.637)
-		),
-		url("../images/icon-check.svg");
+	background-image: url("../images/icon-check.svg"),
+		linear-gradient(to right, rgb(87, 221, 255), rgb(191, 88, 243));
 	background-position: center;
 	background-size: center;
 	background-repeat: no-repeat;
