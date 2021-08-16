@@ -4,18 +4,18 @@
 	justify-content: flex-start;
 	width: 100%;
 	height: 38vh;
-	background: no-repeat url("../images/bg-mobile-light.jpg");
+	background-image: url("../images/bg-mobile-light.jpg");
 	background-position: center;
 	background-size: cover;
-	&.dark-theme {
-		background: no-repeat url("../images/bg-mobile-dark.jpg");
-		background-position: center;
-		background-size: cover;
-	}
+	background-repeat: no-repeat;
 
 	&__group {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
+}
+
+.dark-background {
+	background-image: url("../images/bg-mobile-dark.jpg") !important;
 }
