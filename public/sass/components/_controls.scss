@@ -25,3 +25,8 @@
 		color: var(--bright-blue);
 	}
 }
+
+.dragging {
+	background-color: var(--dark-toggle) !important;
+	opacity: 0.6;
+}

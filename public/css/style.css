@@ -842,6 +842,9 @@ main {
 .dark-background {
   background-image: url("../images/bg-mobile-dark.jpg") !important; }
 
+.theme__img {
+  will-change: background-image; }
+
 .title {
   text-transform: uppercase;
   color: #e4e5f1;
@@ -986,7 +989,8 @@ main {
   color: inherit;
   z-index: 9999;
   margin-right: 2rem;
-  border: 1px solid var(--border); }
+  border: 1px solid var(--border);
+  will-change: background-image; }
 
 .show-completed {
   background-image: url("../images/icon-check.svg"), linear-gradient(to right, #57ddff, #bf58f3);
@@ -1042,3 +1046,7 @@ main {
       color: var(--btn-active) !important; }
   .controls__btn.active {
     color: var(--bright-blue); }
+
+.dragging {
+  background-color: var(--dark-toggle) !important;
+  opacity: 0.6; }

@@ -19,3 +19,7 @@
 .dark-background {
 	background-image: url("../images/bg-mobile-dark.jpg") !important;
 }
+
+.theme__img {
+	will-change: background-image;
+}

@@ -43,6 +43,23 @@ list.addEventListener("click", function (e) {
 	}
 });
 
+let mobileStartDrag = "touchstart",
+	desktopStateDrag = "dragstart",
+	dragged = null;
+
+list.addEventListener(mobileStartDrag, function (e) {
+	console.log("draggging!", e.target);
+	dragged = e.target;
+	const todos = this.childNodes;
+	let listItems = [];
+	for (const item of todos) {
+		if (item.childNodes[0].dataset.id !== dragged.dataset.id) {
+			item.classList.add("dragging");
+		}
+	}
+	// dragged.classList.add("dragging");
+});
+
 clearBtn.addEventListener("click", function (e) {
 	listArr = listArr.filter((item) => item.completed === false);
 	itemsLeft.innerHTML = `${listArr.length} items left`;
@@ -71,6 +88,7 @@ function displayList(arr = listArr) {
 			const todoItem = document.createElement("LI");
 			todoItem.classList.add("todo__listItem");
 			todoItem.draggable = true;
+			todoItem.dataset.id = item.id;
 			todoItem.innerHTML = `<span class="toggle ${
 				item.completed ? "show-completed" : ""
 			}" data-id='${item.id}'></span><span class="text ${
