@@ -86,7 +86,7 @@ list.addEventListener("dragstart", function (e) {
 	const todos = this.childNodes;
 	for (const item of todos) {
 		if (item.childNodes[0].dataset.id !== dragItem.dataset.id) {
-			item.classList.add("dragging");
+			item.classList.add("drop-items");
 		}
 	}
 });
@@ -94,27 +94,24 @@ list.addEventListener("dragstart", function (e) {
 list.addEventListener("dragend", function (e) {
 	const todos = this.childNodes;
 	for (const item of todos) {
-		item.classList.remove("dragging");
+		item.classList.remove("drop-items");
 	}
 });
 
-list.addEventListener("dragenter", function (e) {
-	const todos = this.childNodes;
-	for (const item of todos) {
-		if (item.childNodes[0].dataset.id !== dragItem.dataset.id) {
-			item.classList.add("drag-active");
-		}
-	}
-});
+function onDragEnter(e) {
+	const current = e.target;
 
-list.addEventListener("dragleave", function (e) {
-	const todos = this.childNodes;
-	for (const item of todos) {
-		if (item.childNodes[0].dataset.id !== dragItem.dataset.id) {
-			item.classList.remove("drag-active");
-		}
+	if (current.dataset.id !== dragItem.dataset.id) {
+		current.classList.add("dragging");
 	}
-});
+}
+
+function onDragLeave(e) {
+	const current = e.target;
+	if (current.dataset.id !== dragItem.dataset.id) {
+		current.classList.remove("dragging");
+	}
+}
 
 list.addEventListener("dragover", function (e) {
 	const todos = this.childNodes;
@@ -163,6 +160,8 @@ function displayList(arr = listArr) {
 			const todoItem = document.createElement("LI");
 			todoItem.classList.add("todo__listItem");
 			todoItem.addEventListener("drop", onDropItem);
+			todoItem.addEventListener("dragenter", onDragEnter);
+			todoItem.addEventListener("dragleave", onDragLeave);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
 			todoItem.innerHTML = `<span class="toggle ${
