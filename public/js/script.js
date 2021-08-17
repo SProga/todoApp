@@ -156,15 +156,15 @@ function onDragStartMobile(e) {
 	}
 }
 
-function onDragMoveMobile(e) {
-	let x = e.touches[0].clientX;
-	let y = e.touches[0].clientY;
+// function onDragMoveMobile(e) {
+// 	let x = e.touches[0].clientX;
+// 	let y = e.touches[0].clientY;
 
-	if (e.target.matches(".todo__listItem")) {
-		e.target.style.position = "absolute";
-		e.target.style.transform = `translate(${x}px,${y}px)`;
-	}
-}
+// 	if (e.target.matches(".todo__listItem")) {
+// 		e.target.style.position = "absolute";
+// 		e.target.style.transform = `translate(${x}px,${y}px)`;
+// 	}
+// }
 
 function displayList(arr = listArr) {
 	list.innerHTML = "";
@@ -179,8 +179,8 @@ function displayList(arr = listArr) {
 			todoItem.addEventListener("dragend", onDragEnd);
 			todoItem.addEventListener("dragover", onDragOver);
 			todoItem.addEventListener("drop", onDropItem);
-			todoItem.addEventListener("touchstart", onDragStartMobile);
-			todoItem.addEventListener("touchmove", onDragMoveMobile);
+			// todoItem.addEventListener("touchstart", onDragStartMobile);
+			// todoItem.addEventListener("touchmove", onDragMoveMobile);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
 			todoItem.innerHTML = `<span class="toggle ${
