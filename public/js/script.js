@@ -98,16 +98,6 @@ function onDragEnd(e) {
 	}
 }
 
-function onDragStartMobile(e) {
-	dragItem = this;
-	const todos = document.querySelectorAll(".todo__listItem");
-	for (const item of todos) {
-		if (item.dataset.id === dragItem.dataset.id) {
-			item.classList.add("drop-items");
-		}
-	}
-}
-
 function onDragOver(e) {
 	e.preventDefault();
 }
@@ -155,6 +145,25 @@ function toggleItemStatus(item) {
 	item.classList.toggle("show-completed");
 }
 
+function onDragStartMobile(e) {
+	e.preventDefault();
+	dragItem = this;
+	const todos = document.querySelectorAll(".todo__listItem");
+	for (const item of todos) {
+		if (item.dataset.id === dragItem.dataset.id) {
+			item.classList.add("drop-items");
+		}
+	}
+}
+
+function onDragMoveMobile(e) {
+	e.preventDefault();
+	let x = e.touches[0].clientX;
+	let y = e.touches[0].clientY;
+	let translate3d = `translate3d(${x},${y},0)`;
+	this.style.transform = translate3d;
+}
+
 function displayList(arr = listArr) {
 	list.innerHTML = "";
 
@@ -169,8 +178,8 @@ function displayList(arr = listArr) {
 			todoItem.addEventListener("dragover", onDragOver);
 			todoItem.addEventListener("drop", onDropItem);
 			todoItem.addEventListener("touchstart", onDragStartMobile);
-			todoItem.addEventListener("touchend", onDragEnd);
-			todoItem.addEventListener("touchmove", onDragOver);
+			todoItem.addEventListener("touchend", onDragEndMobile);
+			todoItem.addEventListener("touchmove", onDragMoveMobile);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
 			todoItem.innerHTML = `<span class="toggle ${
