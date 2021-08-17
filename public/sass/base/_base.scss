@@ -48,7 +48,7 @@ body {
 	background-size: 100% 30%;
 	background-repeat: no-repeat;
 	background-color: var(--background-color);
-
+	background-attachment: fixed;
 	@include respond(tab-land) {
 		background-image: url("../images/bg-desktop-light.jpg");
 	}
