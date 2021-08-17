@@ -1,18 +1,27 @@
+let listArr = [];
 const inputBtn = document.querySelector(".todo__btn");
 const input = document.querySelector(".todo__input");
 const list = document.querySelector(".todo__list");
 const itemsLeft = document.querySelector(".items__left");
 const clearBtn = document.querySelector(".clear");
+import { getLocalStorageItem } from "./localStorage.js";
+import { setLocalStorageItem } from "./localStorage.js";
 
-let listArr = [];
 itemsLeft.innerHTML = `0 items left`;
-
 inputBtn.addEventListener("click", addTodo);
-input.addEventListener("keydown", function (e) {
-	if (e.which === 13) {
-		addTodo(e);
+
+async function getLocalStorageTodoItems() {
+	let storageTodoItems = await getLocalStorageItem("todos");
+	if (storageTodoItems) {
+		listArr = storageTodoItems || [];
+		displayList(listArr);
 	}
-});
+}
+getLocalStorageTodoItems();
+
+//FUNCTIONS DEFINITIONS
+
+//* ADD A TODO
 function addTodo(e) {
 	const text = input.value;
 	if (text.trim().length === 0) {
@@ -29,32 +38,7 @@ function addTodo(e) {
 	input.value = "";
 	displayList();
 }
-
-list.addEventListener("click", async function (e) {
-	let toggleComplete = ".toggle";
-	let removeTodo = ".remove-item";
-	if (e.target.matches(toggleComplete)) {
-		const { id } = e.target.dataset;
-		const itemId = +id;
-		const item = listArr.find((item) => item.id === itemId);
-		item.completed = !item.completed;
-		toggleItemStatus(e.target);
-		return;
-	}
-	if (e.target.matches(removeTodo)) {
-		const { id } = e.target.dataset;
-		await removeTodoItem(id);
-	} else {
-		return;
-	}
-});
-
-clearBtn.addEventListener("click", function (e) {
-	listArr = listArr.filter((item) => item.completed === false);
-	itemsLeft.innerHTML = `${listArr.length} items left`;
-	displayList();
-});
-
+//*REMOVE A TODO
 function removeTodoItem(id) {
 	const allTodos = document.querySelectorAll(".todo__listItem");
 	const itemId = parseInt(id);
@@ -77,9 +61,16 @@ function removeTodoItem(id) {
 		resolve();
 	});
 }
+//* END REMOVE TODO
 
-// DRAGGING
-//IUSE querySelectorAll on the list Items
+//**************TOGGLE ITEM **********************************/
+function toggleItemStatus(item) {
+	item.nextElementSibling.classList.toggle("strike-through");
+	displayList();
+}
+//*************END TOGGLE ITEM **********************************/
+
+//*************ALL DRAG EVENTS*****************************/
 let dragItem;
 function onDragStart(e) {
 	dragItem = this;
@@ -140,24 +131,16 @@ function onDropItem(e) {
 	}
 }
 
-function toggleItemStatus(item) {
-	item.nextElementSibling.classList.toggle("strike-through");
-	// item.classList.toggle("show-completed");
-	// item.classList.toggle("completed");
-	displayList();
-}
-
-function onDragStartMobile(e) {
-	e.preventDefault();
-	dragItem = this;
-	const todos = document.querySelectorAll(".todo__listItem");
-	for (const item of todos) {
-		if (item.dataset.id === dragItem.dataset.id) {
-			item.classList.add("drop-items");
-		}
-	}
-}
-
+// function onDragStartMobile(e) {
+// 	e.preventDefault();
+// 	dragItem = this;
+// 	const todos = document.querySelectorAll(".todo__listItem");
+// 	for (const item of todos) {
+// 		if (item.dataset.id === dragItem.dataset.id) {
+// 			item.classList.add("drop-items");
+// 		}
+// 	}
+// }
 // function onDragMoveMobile(e) {
 // 	let x = e.touches[0].clientX;
 // 	let y = e.touches[0].clientY;
@@ -167,7 +150,9 @@ function onDragStartMobile(e) {
 // 		e.target.style.transform = `translate(${x}px,${y}px)`;
 // 	}
 // }
+//**************END DRAG EVENTS ************************************/
 
+//******************* DISPLAY TODO ITEMS ************************/
 function displayList(arr = listArr) {
 	list.innerHTML = "";
 
@@ -202,7 +187,12 @@ function displayList(arr = listArr) {
 				todoItem.classList.remove("fadeIn");
 			}, 3000);
 		});
+		setLocalStorageItem("todos", listArr);
 	}
+	if (arr.length === 0) {
+		localStorage.removeItem("todos");
+	}
+
 	const remaining = countRemaining();
 	if (remaining === 1) {
 		itemsLeft.innerHTML = `${remaining} item left`;
@@ -210,18 +200,17 @@ function displayList(arr = listArr) {
 		itemsLeft.innerHTML = `${remaining} items left`;
 	}
 }
+//******************* DISPLAY TODO ITEMS ************************/
 
-const listItemsFilter = document.querySelectorAll(".controls__btn");
-listItemsFilter.forEach((item) => {
-	item.addEventListener("click", filterList.bind(null, item));
-});
-
+//******************* COUNT REMAINING TODO ITEMS ************************/
 function countRemaining() {
 	const notCompleted = listArr.filter((todo) => !todo.completed);
 	const remaining = notCompleted.length;
 	return remaining;
 }
+//******************* COUNT REMAINING TODO ITEMS ************************/
 
+//******************* FILTER TODO ITEMS ************************/
 function filterList(item) {
 	const { filter } = item.dataset;
 	let filterArr;
@@ -244,6 +233,43 @@ function filterList(item) {
 		return;
 	}
 }
+//******************* END FILTER TODO ITEMS ************************/
+
+//EVENT LISTENERS
+input.addEventListener("keydown", function (e) {
+	if (e.which === 13) {
+		addTodo(e);
+	}
+});
+const listItemsFilter = document.querySelectorAll(".controls__btn");
+listItemsFilter.forEach((item) => {
+	item.addEventListener("click", filterList.bind(null, item));
+});
+
+list.addEventListener("click", async function (e) {
+	let toggleComplete = ".toggle";
+	let removeTodo = ".remove-item";
+	if (e.target.matches(toggleComplete)) {
+		const { id } = e.target.dataset;
+		const itemId = +id;
+		const item = listArr.find((item) => item.id === itemId);
+		item.completed = !item.completed;
+		toggleItemStatus(e.target);
+		return;
+	}
+	if (e.target.matches(removeTodo)) {
+		const { id } = e.target.dataset;
+		await removeTodoItem(id);
+	} else {
+		return;
+	}
+});
+
+clearBtn.addEventListener("click", function (e) {
+	listArr = listArr.filter((item) => item.completed === false);
+	itemsLeft.innerHTML = `${listArr.length} items left`;
+	displayList();
+});
 
 const changeTheme = document.querySelector(".btn__theme");
 changeTheme.addEventListener("click", () => {
