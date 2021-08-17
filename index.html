@@ -18,7 +18,7 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="./public/css/style.css" />
-		<title>Frontend Mentor | Todo app</title>
+		<title>Frontend Mentor | Todo app by Shane Proverbs</title>
 
 		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 	</head>
@@ -32,13 +32,17 @@
 						src="./public/images/icon-moon.svg"
 						alt="toggle dark mode"
 					/>
+					<span class="sr-only">toggle dark mode</span>
 				</button>
 			</div>
 
 			<div class="todo">
 				<button class="todo__btn" type="button"></button>
-				<label class="todo__label sr-only">create a new Todo</label>
+				<label class="todo__label sr-only" for="createTodo"
+					>create a new Todo</label
+				>
 				<input
+					id="createTodo"
 					type="text"
 					class="todo__input"
 					placeholder="Create a new todo"
