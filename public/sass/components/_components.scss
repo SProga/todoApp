@@ -53,6 +53,7 @@
 		}
 	}
 	&__container {
+		position: relative;
 		display: flex;
 		color: inherit;
 		flex-direction: column;
@@ -78,6 +79,7 @@
 	// Li Item
 	&__listItem {
 		display: flex;
+		width: 100%;
 		align-items: center;
 		position: relative;
 		padding: 2rem;

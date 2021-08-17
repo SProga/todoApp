@@ -159,9 +159,11 @@ function onDragStartMobile(e) {
 function onDragMoveMobile(e) {
 	let x = e.touches[0].clientX;
 	let y = e.touches[0].clientY;
-	let translate3d = `translate3d(${x},${y},0)`;
-	this.style.position = "relative";
-	this.style.transform = translate3d;
+
+	if (e.target.matches(".todo__listItem")) {
+		e.target.style.position = "absolute";
+		e.target.style.transform = `translate(${x}px,${y}px)`;
+	}
 }
 
 function displayList(arr = listArr) {

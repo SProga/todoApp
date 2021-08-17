@@ -976,6 +976,7 @@ main {
     .todo__btn:focus {
       outline: none; }
   .todo__container {
+    position: relative;
     display: flex;
     color: inherit;
     flex-direction: column;
@@ -997,6 +998,7 @@ main {
     color: inherit; }
   .todo__listItem {
     display: flex;
+    width: 100%;
     align-items: center;
     position: relative;
     padding: 2rem;
