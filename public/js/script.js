@@ -98,6 +98,16 @@ function onDragEnd(e) {
 	}
 }
 
+function onDragStartMobile(e) {
+	dragItem = this;
+	const todos = document.querySelectorAll(".todo__listItem");
+	for (const item of todos) {
+		if (item.dataset.id === dragItem.dataset.id) {
+			item.classList.add("drop-items");
+		}
+	}
+}
+
 function onDragOver(e) {
 	e.preventDefault();
 }
@@ -158,7 +168,7 @@ function displayList(arr = listArr) {
 			todoItem.addEventListener("dragend", onDragEnd);
 			todoItem.addEventListener("dragover", onDragOver);
 			todoItem.addEventListener("drop", onDropItem);
-			todoItem.addEventListener("touchstart", onDragStart);
+			todoItem.addEventListener("touchstart", onDragStartMobile);
 			todoItem.addEventListener("touchend", onDragEnd);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
