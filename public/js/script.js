@@ -178,7 +178,7 @@ function displayList(arr = listArr) {
 			todoItem.addEventListener("dragover", onDragOver);
 			todoItem.addEventListener("drop", onDropItem);
 			todoItem.addEventListener("touchstart", onDragStartMobile);
-			todoItem.addEventListener("touchend", onDragEndMobile);
+			// todoItem.addEventListener("touchend", onDragEndMobile);
 			todoItem.addEventListener("touchmove", onDragMoveMobile);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
