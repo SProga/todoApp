@@ -157,7 +157,6 @@ function onDragStartMobile(e) {
 }
 
 function onDragMoveMobile(e) {
-	e.preventDefault();
 	let x = e.touches[0].clientX;
 	let y = e.touches[0].clientY;
 	let translate3d = `translate3d(${x},${y},0)`;
@@ -178,7 +177,6 @@ function displayList(arr = listArr) {
 			todoItem.addEventListener("dragover", onDragOver);
 			todoItem.addEventListener("drop", onDropItem);
 			todoItem.addEventListener("touchstart", onDragStartMobile);
-			// todoItem.addEventListener("touchend", onDragEndMobile);
 			todoItem.addEventListener("touchmove", onDragMoveMobile);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
