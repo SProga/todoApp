@@ -257,8 +257,8 @@ fadeIn
 .fadeIn {
   animation-name: fadeIn;
   -webkit-animation-name: fadeIn;
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
+  animation-duration: 500ms;
+  -webkit-animation-duration: 500ms;
   animation-timing-function: ease-in-out;
   -webkit-animation-timing-function: ease-in-out;
   visibility: visible !important; }
@@ -768,7 +768,8 @@ stretchRight
   --dark-toggle: hsl(233, 14%, 35%);
   --btn-active: hsl(276, 78%, 69%);
   --dragging: hsl(220, 52%, 61%);
-  --not-drag-color: rgba(202, 202, 202, 0.685); }
+  --not-drag-color: rgba(202, 202, 202, 0.685);
+  --text-color: hsl(235, 13%, 34%); }
 
 *,
 *::after,
@@ -798,8 +799,7 @@ body {
   background-position: top;
   background-size: 100% 30%;
   background-repeat: no-repeat;
-  background-color: var(--background-color);
-  background-attachment: fixed; }
+  background-color: var(--background-color); }
   @media only screen and (max-width: 80em) {
     body {
       background-image: url("../images/bg-desktop-light.jpg"); } }
@@ -821,7 +821,8 @@ body.dark-theme {
   --background-color: hsl(235, 21%, 11%);
   --dark-toggle: hsl(233, 14%, 35%);
   --dark-background-color: hsl(235, 24%, 19%);
-  --not-drag-color: rgb(53, 56, 85); }
+  --not-drag-color: rgb(53, 56, 85);
+  --text-color: hsl(0, 0%, 98%); }
   @media only screen and (max-width: 80em) {
     body.dark-theme {
       background-image: url("../images/bg-desktop-dark.jpg"); } }
@@ -940,8 +941,8 @@ main {
   .todo__input {
     position: relative;
     padding: 2.4rem;
-    width: 90%;
-    color: var(--dark-grayish-blue);
+    width: 92%;
+    color: var(--text-color);
     border-radius: 10px;
     border: none;
     margin: 0 auto;
@@ -983,7 +984,7 @@ main {
     background-color: var(--gray);
     min-height: 30rem;
     margin: 0 auto;
-    width: 90%;
+    width: 92%;
     margin-top: 2rem;
     border-radius: 10px;
     -webkit-backface-visibility: hidden;
@@ -1003,12 +1004,13 @@ main {
     position: relative;
     padding: 2rem;
     font-size: 1.8rem;
-    color: var(--dark-grayish-blue);
+    color: var(--text-color);
     border-bottom: 1px solid var(--border);
     cursor: -webkit-grab;
     cursor: grab; }
   .todo__notifications {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
@@ -1017,7 +1019,8 @@ main {
 
 .strike-through {
   color: inherit;
-  text-decoration: line-through; }
+  text-decoration: line-through;
+  color: var(--dark-grayish-blue); }
 
 .toggle {
   height: 3.5rem;
@@ -1028,7 +1031,8 @@ main {
   margin-right: 2rem;
   border: 1px solid var(--border);
   will-change: background-image;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: transform 0.2s linear; }
 
 .show-completed {
   background-image: url("../images/icon-check.svg"), linear-gradient(to right, #57ddff, #bf58f3);
@@ -1037,17 +1041,27 @@ main {
   background-repeat: no-repeat; }
 
 .items__left {
-  font-size: 2rem;
-  color: inherit; }
+  font-size: 1.3rem;
+  color: inherit;
+  font-weight: 600; }
+  @media only screen and (max-width: 80em) {
+    .items__left {
+      font-size: 2rem; } }
 
 .clear {
   border: none;
   background: transparent;
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: inherit;
   font-family: inherit;
   text-transform: capitalize;
-  cursor: pointer; }
+  cursor: pointer;
+  font-weight: 600; }
+  @media only screen and (max-width: 80em) {
+    .clear {
+      font-size: 2rem; } }
+  .clear:hover {
+    color: var(--text-color); }
 
 .remove-item {
   display: inline-block;
@@ -1068,16 +1082,45 @@ main {
   border: none;
   outline: none; }
 
+.todo__btn:hover,
+.toggle:hover {
+  border-radius: 50%;
+  /*1*/
+  border: 1px solid transparent;
+  /*2*/
+  background: linear-gradient(to right, #57ddff, #bf58f3) border-box;
+  /*3*/
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  /*5'*/
+  mask-composite: exclude; }
+
+.toggle.show-completed.completed:hover {
+  border: initial;
+  /*2*/
+  background-image: url("../images/icon-check.svg"), linear-gradient(to right, #57ddff, #bf58f3);
+  background-position: center;
+  background-size: center;
+  background-repeat: no-repeat;
+  -webkit-mask: initial;
+  -webkit-mask-composite: initial;
+  /*5'*/
+  mask-composite: initial;
+  border: 1px solid var(--border);
+  transform: translateY(-1px); }
+
 .controls {
-  width: 90%;
+  width: 92%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   border-radius: 10px;
   padding: 2.5rem;
   background-color: var(--gray);
-  margin: 2rem auto;
-  color: inherit; }
+  margin: 2rem auto; }
+  @media only screen and (min-width: 80em) {
+    .controls {
+      display: none; } }
   .controls__btn {
     border: none;
     background: transparent;
@@ -1089,6 +1132,8 @@ main {
     cursor: pointer; }
     .controls__btn:active {
       color: var(--btn-active) !important; }
+    .controls__btn:hover {
+      color: var(--text-color); }
   .controls__btn.active {
     color: var(--bright-blue); }
 
@@ -1104,3 +1149,13 @@ main {
   /* fallback if grab cursor is unsupported */
   cursor: -webkit-grab;
   cursor: grab; }
+
+.centered-controls {
+  display: flex;
+  flex: 0 0 25%; }
+  @media only screen and (max-width: 80em) {
+    .centered-controls {
+      display: none; } }
+
+.controls__btn.btn--mobile {
+  font-size: 1.3rem; }

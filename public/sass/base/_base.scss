@@ -9,6 +9,7 @@
 	--btn-active: hsl(276, 78%, 69%);
 	--dragging: hsl(220, 52%, 61%);
 	--not-drag-color: rgba(202, 202, 202, 0.685);
+	--text-color: hsl(235, 13%, 34%);
 }
 
 *,
@@ -47,7 +48,6 @@ body {
 	background-size: 100% 30%;
 	background-repeat: no-repeat;
 	background-color: var(--background-color);
-	background-attachment: fixed;
 
 	@include respond(tab-land) {
 		background-image: url("../images/bg-desktop-light.jpg");
@@ -72,6 +72,8 @@ body.dark-theme {
 	--dark-toggle: hsl(233, 14%, 35%);
 	--dark-background-color: hsl(235, 24%, 19%);
 	--not-drag-color: rgb(53, 56, 85);
+	--text-color: hsl(0, 0%, 98%);
+
 	@include respond(tab-land) {
 		background-image: url("../images/bg-desktop-dark.jpg");
 	}

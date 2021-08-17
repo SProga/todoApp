@@ -142,7 +142,9 @@ function onDropItem(e) {
 
 function toggleItemStatus(item) {
 	item.nextElementSibling.classList.toggle("strike-through");
-	item.classList.toggle("show-completed");
+	// item.classList.toggle("show-completed");
+	// item.classList.toggle("completed");
+	displayList();
 }
 
 function onDragStartMobile(e) {
@@ -184,7 +186,7 @@ function displayList(arr = listArr) {
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
 			todoItem.innerHTML = `<span class="toggle ${
-				item.completed ? "show-completed" : ""
+				item.completed ? "show-completed completed" : ""
 			}" data-id='${item.id}'></span><span class="text ${
 				item.completed ? "strike-through" : ""
 			}">${item.text}</span><span class="remove-item" data-id='${
@@ -201,10 +203,11 @@ function displayList(arr = listArr) {
 			}, 3000);
 		});
 	}
-	if (listArr.length === 1) {
-		itemsLeft.innerHTML = `${listArr.length} item left`;
+	const remaining = countRemaining();
+	if (remaining === 1) {
+		itemsLeft.innerHTML = `${remaining} item left`;
 	} else {
-		itemsLeft.innerHTML = `${listArr.length} items left`;
+		itemsLeft.innerHTML = `${remaining} items left`;
 	}
 }
 
@@ -213,11 +216,22 @@ listItemsFilter.forEach((item) => {
 	item.addEventListener("click", filterList.bind(null, item));
 });
 
+function countRemaining() {
+	const notCompleted = listArr.filter((todo) => !todo.completed);
+	const remaining = notCompleted.length;
+	return remaining;
+}
+
 function filterList(item) {
 	const { filter } = item.dataset;
 	let filterArr;
 	listItemsFilter.forEach((item) => item.classList.remove("active"));
 	item.classList.add("active");
+
+	if (filter === "all") {
+		filterArr = listArr.filter((item) => item);
+		return displayList(filterArr);
+	}
 
 	if (filter === "active") {
 		filterArr = listArr.filter((item) => item.completed === false);
@@ -227,7 +241,7 @@ function filterList(item) {
 		filterArr = listArr.filter((item) => item.completed === true);
 		return displayList(filterArr);
 	} else {
-		return displayList();
+		return;
 	}
 }
 
@@ -237,10 +251,10 @@ changeTheme.addEventListener("click", () => {
 	clearTimeout(timer);
 	document.body.classList.toggle("dark-theme");
 	document.body.classList.add("fadeIn");
-	changeTheme.disabled = true;
+	changeTheme.disabled = true; //disable the button to change the theme
 	timer = setTimeout(() => {
 		document.body.classList.remove("fadeIn");
-		changeTheme.disabled = false;
+		changeTheme.disabled = false; //re-enable the button to change the theme
 	}, 550);
 
 	if (document.body.classList.contains("dark-theme")) {
