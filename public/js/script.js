@@ -81,46 +81,40 @@ function removeTodoItem(id) {
 // DRAGGING
 //IUSE querySelectorAll on the list Items
 let dragItem;
-list.addEventListener("dragstart", function (e) {
-	dragItem = e.target;
-	const todos = this.childNodes;
+function onDragStart(e) {
+	dragItem = this;
+	const todos = document.querySelectorAll(".todo__listItem");
 	for (const item of todos) {
-		if (item.childNodes[0].dataset.id !== dragItem.dataset.id) {
+		if (item.dataset.id !== dragItem.dataset.id) {
 			item.classList.add("drop-items");
 		}
 	}
-});
+}
 
-list.addEventListener("dragend", function (e) {
-	const todos = this.childNodes;
+function onDragEnd(e) {
+	const todos = document.querySelectorAll(".todo__listItem");
 	for (const item of todos) {
 		item.classList.remove("drop-items");
 	}
-});
+}
+
+function onDragOver(e) {
+	e.preventDefault();
+}
 
 function onDragEnter(e) {
-	const current = e.target;
-
-	if (current.dataset.id !== dragItem.dataset.id) {
-		current.classList.add("dragging");
+	if (this.dataset.id !== dragItem.dataset.id) {
+		this.classList.add("dragging");
+		this.classList.remove("drop-items");
 	}
 }
 
 function onDragLeave(e) {
-	const current = e.target;
-	if (current.dataset.id !== dragItem.dataset.id) {
-		current.classList.remove("dragging");
+	if (this.dataset.id !== dragItem.dataset.id) {
+		this.classList.remove("dragging");
+		this.classList.add("drop-items");
 	}
 }
-
-list.addEventListener("dragover", function (e) {
-	const todos = this.childNodes;
-	for (const item of todos) {
-		if (item.childNodes[0].dataset.id === dragItem.dataset.id) {
-			e.preventDefault();
-		}
-	}
-});
 
 function onDropItem(e) {
 	e.preventDefault();
@@ -129,14 +123,14 @@ function onDropItem(e) {
 	let dropItem = e.currentTarget;
 	const todos = document.querySelectorAll(".todo__listItem");
 	todos.forEach((item, index) => {
-		console.log("itemid", item.dataset.id);
-		console.log("datasetid", dragItem.dataset.id);
 		if (item.dataset.id === dropItem.dataset.id) {
 			droppedpos = index; //drop position index
 		}
 		if (item.dataset.id === dragItem.dataset.id) {
 			draggedpos = index;
 		}
+		item.classList.remove("dragging");
+		item.classList.remove("drop-items");
 	});
 
 	if (draggedpos < droppedpos) {
@@ -149,7 +143,6 @@ function onDropItem(e) {
 function toggleItemStatus(item) {
 	item.nextElementSibling.classList.toggle("strike-through");
 	item.classList.toggle("show-completed");
-	console.log("toggleItemStatus", listArr);
 }
 
 function displayList(arr = listArr) {
@@ -159,9 +152,12 @@ function displayList(arr = listArr) {
 		arr.forEach((item) => {
 			const todoItem = document.createElement("LI");
 			todoItem.classList.add("todo__listItem");
-			todoItem.addEventListener("drop", onDropItem);
+			todoItem.addEventListener("dragstart", onDragStart);
 			todoItem.addEventListener("dragenter", onDragEnter);
 			todoItem.addEventListener("dragleave", onDragLeave);
+			todoItem.addEventListener("dragend", onDragEnd);
+			todoItem.addEventListener("dragover", onDragOver);
+			todoItem.addEventListener("drop", onDropItem);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
 			todoItem.innerHTML = `<span class="toggle ${

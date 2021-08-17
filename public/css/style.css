@@ -767,8 +767,8 @@ stretchRight
   --background-color: hsl(236, 33%, 92%);
   --dark-toggle: hsl(233, 14%, 35%);
   --btn-active: hsl(276, 78%, 69%);
-  --dragging: rgba(19, 246, 106, 0.548);
-  --not-drag-color: rgba(157, 184, 211, 0.685); }
+  --dragging: hsl(220, 52%, 61%);
+  --not-drag-color: rgba(202, 202, 202, 0.685); }
 
 *,
 *::after,
@@ -821,7 +821,7 @@ body.dark-theme {
   --background-color: hsl(235, 21%, 11%);
   --dark-toggle: hsl(233, 14%, 35%);
   --dark-background-color: hsl(235, 24%, 19%);
-  --not-drag-color: rgba(226, 227, 229, 0.65); }
+  --not-drag-color: rgb(53, 56, 85); }
   @media only screen and (max-width: 80em) {
     body.dark-theme {
       background-image: url("../images/bg-desktop-dark.jpg"); } }
@@ -1002,7 +1002,9 @@ main {
     padding: 2rem;
     font-size: 1.8rem;
     color: var(--dark-grayish-blue);
-    border-bottom: 1px solid var(--border); }
+    border-bottom: 1px solid var(--border);
+    cursor: -webkit-grab;
+    cursor: grab; }
   .todo__notifications {
     display: flex;
     justify-content: space-between;
@@ -1089,8 +1091,14 @@ main {
     color: var(--bright-blue); }
 
 .dragging {
-  background-color: var(--dragging);
-  opacity: 0.6; }
+  background-image: linear-gradient(to right, rgba(87, 221, 255, 0.651), rgba(192, 88, 243, 0.644));
+  color: #fff; }
 
 .drop-items {
   background-color: var(--not-drag-color); }
+
+.grabbing {
+  cursor: move;
+  /* fallback if grab cursor is unsupported */
+  cursor: -webkit-grab;
+  cursor: grab; }

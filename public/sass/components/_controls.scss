@@ -28,9 +28,18 @@
 }
 
 .dragging {
-	background-color: var(--dragging);
-	opacity: 0.6;
+	background-image: linear-gradient(
+		to right,
+		hsla(192, 100%, 67%, 0.651),
+		hsla(280, 87%, 65%, 0.644)
+	);
+	color: #fff;
 }
 .drop-items {
 	background-color: var(--not-drag-color);
+}
+.grabbing {
+	cursor: move; /* fallback if grab cursor is unsupported */
+	cursor: -webkit-grab;
+	cursor: grab;
 }

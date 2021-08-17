@@ -63,7 +63,7 @@
 		margin-top: 2rem;
 		border-radius: 10px;
 		-webkit-backface-visibility: hidden;
-		        backface-visibility: hidden;
+		backface-visibility: hidden;
 	}
 	// ul Item
 	&__list {
@@ -84,6 +84,8 @@
 		font-size: 1.8rem;
 		color: var(--dark-grayish-blue);
 		border-bottom: 1px solid var(--border);
+		cursor: -webkit-grab;
+		cursor: grab;
 	}
 
 	&__notifications {
