@@ -136,6 +136,25 @@ function onDropItem(e) {
 	} else {
 		list.insertBefore(dragItem, dropItem);
 	}
+
+	const newTodos = document.querySelectorAll(".todo__listItem");
+	console.log("before search New todosDom");
+	newTodos.forEach((todo, index) => {
+		console.log(index + " " + todo.dataset.id + " " + todo.innerHTML);
+	});
+
+	const makeArr = Array.from(newTodos);
+	const newArr = [];
+	console.log("before sort ", listArr);
+	listArr.forEach((item) => {
+		const index = makeArr.findIndex((t) => {
+			let num = parseInt(t.dataset.id);
+			return num === item.id;
+		});
+		newArr[index] = item;
+	});
+	listArr = [...newArr];
+	displayList(listArr);
 }
 
 // function onDragStartMobile(e) {
@@ -180,7 +199,7 @@ function displayList(arr = listArr) {
 			todoItem.innerHTML = `<span class="toggle ${
 				item.completed ? "show-completed completed" : ""
 			}" data-id='${item.id}'></span><span class="text ${
-				item.completed ? "strike-through" : ""
+				item.completed ? "strike-through completed" : ""
 			}">${item.text}</span><span class="remove-item" data-id='${
 				item.id
 			}'></span>`;

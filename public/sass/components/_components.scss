@@ -8,7 +8,7 @@
 	&__input {
 		position: relative;
 		padding: 2.4rem;
-		width: 92%;
+		width: 94%;
 		color: var(--text-color);
 		border-radius: 10px;
 		border: none;
@@ -60,7 +60,7 @@
 		background-color: var(--gray);
 		min-height: 30rem;
 		margin: 0 auto;
-		width: 92%;
+		width: 94%;
 		margin-top: 2rem;
 		border-radius: 10px;
 		-webkit-backface-visibility: hidden;
@@ -129,8 +129,10 @@
 
 .items__left {
 	@include respond(tab-land) {
-		font-size: 2rem;
+		font-size: 1.8rem;
+		flex: 0 0 50%;
 	}
+	flex: 0 0 20%;
 	font-size: 1.3rem;
 	color: inherit;
 	font-weight: 600;
@@ -140,7 +142,7 @@
 	border: none;
 	background: transparent;
 	@include respond(tab-land) {
-		font-size: 2rem;
+		font-size: 1.8rem;
 	}
 	font-size: 1.3rem;
 	color: inherit;
