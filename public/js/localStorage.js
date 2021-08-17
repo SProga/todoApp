@@ -7,14 +7,12 @@ export function setLocalStorageItem(key, item) {
 }
 
 export function getLocalStorageItem(key) {
-	return new Promise((resolve, reject) => {
-		const item = localStorage.getItem(key);
-		if (!item) {
-			reject("item wasn't found in localStorage");
-			return;
-		} else {
-			const data = JSON.parse(item);
-			resolve(data);
-		}
-	});
+	const item = localStorage.getItem(key);
+	if (!item) {
+		return null;
+	} else {
+		const data = JSON.parse(item);
+
+		return data;
+	}
 }

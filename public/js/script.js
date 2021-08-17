@@ -10,11 +10,18 @@ import { setLocalStorageItem } from "./localStorage.js";
 itemsLeft.innerHTML = `0 items left`;
 inputBtn.addEventListener("click", addTodo);
 
-async function getLocalStorageTodoItems() {
-	let storageTodoItems = await getLocalStorageItem("todos");
+function getLocalStorageTodoItems() {
+	let storageTodoItems = getLocalStorageItem("todos");
+	let theme = getLocalStorageItem("theme");
 	if (storageTodoItems) {
 		listArr = storageTodoItems || [];
 		displayList(listArr);
+	}
+	if (!theme) {
+		document.body.classList.add("light-theme");
+		document.querySelector(".btn__theme").dataset.theme = "light";
+	} else {
+		setTheme(theme);
 	}
 }
 getLocalStorageTodoItems();
@@ -39,7 +46,7 @@ function addTodo(e) {
 	displayList();
 }
 //*REMOVE A TODO
-function removeTodoItem(id) {
+function removeTodoItem(id, delay) {
 	const allTodos = document.querySelectorAll(".todo__listItem");
 	const itemId = parseInt(id);
 
@@ -259,7 +266,7 @@ list.addEventListener("click", async function (e) {
 	}
 	if (e.target.matches(removeTodo)) {
 		const { id } = e.target.dataset;
-		await removeTodoItem(id);
+		await removeTodoItem(id, 500);
 	} else {
 		return;
 	}
@@ -272,20 +279,42 @@ clearBtn.addEventListener("click", function (e) {
 });
 
 const changeTheme = document.querySelector(".btn__theme");
-changeTheme.addEventListener("click", () => {
+changeTheme.addEventListener("click", toggleTheme);
+
+function toggleTheme() {
 	let timer;
 	clearTimeout(timer);
-	document.body.classList.toggle("dark-theme");
-	document.body.classList.add("fadeIn");
 	changeTheme.disabled = true; //disable the button to change the theme
+	if (document.body.classList.contains("dark-theme")) {
+		document.querySelector(".theme__img").src = "./public/images/icon-moon.svg";
+		document.body.classList.remove("dark-theme");
+		document.body.classList.add("light-theme");
+		document.body.classList.add("fadeIn");
+		setLocalStorageItem("theme", "light");
+	} else {
+		document.body.classList.remove("light-theme");
+		document.body.classList.add("dark-theme");
+		document.body.classList.add("fadeIn");
+		document.querySelector(".theme__img").src = "./public/images/icon-sun.svg";
+		setLocalStorageItem("theme", "dark");
+	}
 	timer = setTimeout(() => {
 		document.body.classList.remove("fadeIn");
 		changeTheme.disabled = false; //re-enable the button to change the theme
 	}, 550);
+}
 
+function setTheme(theme = "light") {
+	if (theme === "dark") {
+		document.body.classList.add("dark-theme");
+		document.body.classList.remove("light-theme");
+	} else {
+		document.body.classList.add("light-theme");
+		document.body.classList.remove("dark-theme");
+	}
 	if (document.body.classList.contains("dark-theme")) {
 		document.querySelector(".theme__img").src = "./public/images/icon-sun.svg";
 	} else {
 		document.querySelector(".theme__img").src = "./public/images/icon-moon.svg";
 	}
-});
+}
