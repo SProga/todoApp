@@ -158,6 +158,8 @@ function displayList(arr = listArr) {
 			todoItem.addEventListener("dragend", onDragEnd);
 			todoItem.addEventListener("dragover", onDragOver);
 			todoItem.addEventListener("drop", onDropItem);
+			todoItem.addEventListener("touchstart", onDragStart);
+			todoItem.addEventListener("touchend", onDragEnd);
 			todoItem.draggable = true;
 			todoItem.dataset.id = item.id;
 			todoItem.innerHTML = `<span class="toggle ${
