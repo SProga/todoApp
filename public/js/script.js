@@ -315,7 +315,7 @@ function toggleTheme() {
 	clearTimeout(timer);
 	changeTheme.disabled = true; //disable the button to change the theme
 	if (document.body.classList.contains("dark-theme")) {
-		document.querySelector(".theme__img").src = "./public/images/icon-sun.svg";
+		document.querySelector(".theme__img").src = "./public/images/icon-moon.svg";
 		document.body.classList.remove("dark-theme");
 		document.body.classList.add("light-theme");
 		document.body.classList.add("fadeIn");
@@ -324,7 +324,7 @@ function toggleTheme() {
 		document.body.classList.remove("light-theme");
 		document.body.classList.add("dark-theme");
 		document.body.classList.add("fadeIn");
-		document.querySelector(".theme__img").src = "./public/images/icon-moon.svg";
+		document.querySelector(".theme__img").src = "./public/images/icon-sun.svg";
 		setLocalStorageItem("theme", "dark");
 	}
 	timer = setTimeout(() => {
@@ -337,7 +337,6 @@ function setTheme(theme = "light") {
 	if (theme === "dark") {
 		document.body.classList.add("dark-theme");
 		document.body.classList.remove("light-theme");
-		document.querySelector(".btn__theme").dataset.theme = "dark";
 	} else {
 		document.body.classList.add("light-theme");
 		document.body.classList.remove("dark-theme");

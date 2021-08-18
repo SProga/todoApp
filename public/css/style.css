@@ -883,7 +883,7 @@ main {
     justify-content: space-between;
     max-width: 50rem;
     margin: 0 auto;
-    width: 100%; }
+    width: 90%; }
 
 .theme__img {
   will-change: background-image; }
@@ -892,7 +892,8 @@ main {
   text-transform: uppercase;
   color: #fff;
   letter-spacing: 1.5rem;
-  font-size: 4rem; }
+  font-size: 4rem;
+  margin-left: 1rem; }
 
 .instruction {
   font-size: 1.8rem;
@@ -1103,8 +1104,7 @@ main {
     transform: scale(1.13); }
 
 .btn__theme {
-  align-self: center;
-  margin-right: 5rem;
+  margin-right: 1rem;
   margin-bottom: 1rem;
   cursor: pointer;
   background-color: transparent;
