@@ -142,13 +142,12 @@ function onDropItem(e) {
 	});
 
 	if (draggedpos < droppedpos) {
-		list.insertBefore(dropItem, dragItem);
+		list.insertBefore(dragItem, dropItem.nextSibling);
 	} else {
 		list.insertBefore(dragItem, dropItem);
 	}
 
 	const newTodos = document.querySelectorAll(".todo__listItem");
-
 	const makeArr = Array.from(newTodos);
 	const newArr = [];
 	listArr.forEach((item) => {
@@ -156,6 +155,7 @@ function onDropItem(e) {
 			let num = parseInt(t.dataset.id);
 			return num === item.id;
 		});
+
 		newArr[index] = item;
 	});
 	listArr = [...newArr];
