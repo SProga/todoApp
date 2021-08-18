@@ -148,14 +148,9 @@ function onDropItem(e) {
 	}
 
 	const newTodos = document.querySelectorAll(".todo__listItem");
-	console.log("before search New todosDom");
-	newTodos.forEach((todo, index) => {
-		console.log(index + " " + todo.dataset.id + " " + todo.innerHTML);
-	});
 
 	const makeArr = Array.from(newTodos);
 	const newArr = [];
-	console.log("before sort ", listArr);
 	listArr.forEach((item) => {
 		const index = makeArr.findIndex((t) => {
 			let num = parseInt(t.dataset.id);
