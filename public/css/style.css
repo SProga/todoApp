@@ -1097,7 +1097,10 @@ main {
   margin-bottom: 0.2rem;
   background-image: url("../images/icon-cross.svg");
   background-size: contain;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out; }
+  .remove-item:hover {
+    transform: scale(1.13); }
 
 .btn__theme {
   align-self: center;

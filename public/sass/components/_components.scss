@@ -163,6 +163,10 @@
 	background-image: url("../images/icon-cross.svg");
 	background-size: contain;
 	cursor: pointer;
+	transition: transform 0.2s ease-in-out;
+	&:hover {
+		transform: scale(1.13);
+	}
 }
 
 .btn__theme {

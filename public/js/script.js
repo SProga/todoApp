@@ -1,4 +1,12 @@
-let listArr = [];
+let listArr = [
+	{
+		id: Math.floor(Math.random() * 123333),
+		text: "Get started",
+		completed: true,
+		enterAnimation: false,
+		exitAnimation: false,
+	},
+];
 const inputBtn = document.querySelector(".todo__btn");
 const input = document.querySelector(".todo__input");
 const list = document.querySelector(".todo__list");
@@ -13,9 +21,11 @@ inputBtn.addEventListener("click", addTodo);
 function getLocalStorageTodoItems() {
 	let storageTodoItems = getLocalStorageItem("todos");
 	let theme = getLocalStorageItem("theme");
-	if (storageTodoItems) {
-		listArr = storageTodoItems || [];
+	if (storageTodoItems && storageTodoItems.length > 0) {
+		listArr = storageTodoItems;
 		displayList(listArr);
+	} else {
+		displayList();
 	}
 	if (!theme) {
 		document.body.classList.add("light-theme");
